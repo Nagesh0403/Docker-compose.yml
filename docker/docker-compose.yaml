@@ -1,0 +1,25 @@
+version: "3.8"
+services:
+  ubuntu_services:
+    image: ubuntu
+    container_name: my_ubuntu_container
+    deploy:
+      replicas: 1
+    command: tail -f /dev/null
+    volumes:
+      - /home/ec2-user:/opt/devops
+
+  python_services:
+    image: python
+    container_name: my_python_container
+    command: tail -f /dev/null
+    volumes:
+      - /home/ec2-user/ec2_path:/tmp/devops1
+
+  nginx_services:
+    image: nginx
+    container_name: my_nginx_container
+    command: tail -f /dev/null
+    volumes:
+      - /home/ec2-user/nag_path:/down/devops3     
+        
