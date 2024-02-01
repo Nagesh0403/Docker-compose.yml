@@ -1,0 +1,33 @@
+---
+- name: playbook yml
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update yum package cache
+      yum:
+        update_cache: yes
+   
+    - name: Install Nginx
+      yum:
+        name: nginx
+        state: present
+
+    - name: Start Nginx service
+      service:
+        name: nginx
+        state: started
+
+    - name: Copy Nginx configuration file
+      copy:
+        src: /home/ec2-user/nagesh.yml
+        dest: Users\nages\Downloads
+      notify:
+        - Reload Nginx
+
+  handlers:
+    - name: Reload Nginx
+      service:
+        name: nginx
+        state: reloaded
+
